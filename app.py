@@ -20,7 +20,8 @@ def createNotionTask(token, collectionURL, title, note):
 @app.route('/create_todo', methods=['GET'])
 def create_todo():
 
-    todo = request.args.get('title','note')
+    title = request.args.get('title')
+	note = request.args.get('note')
     token_v2 = os.environ.get("TOKEN")
     url = os.environ.get("URL")
     createNotionTask(token_v2, url, title, note)
