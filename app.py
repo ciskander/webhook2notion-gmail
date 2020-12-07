@@ -13,7 +13,7 @@ def createNotionTask(token, collectionURL, todo):
     client = NotionClient(token)
     cv = client.get_collection_view(collectionURL)
     row = cv.collection.add_row()
-    row.title = todo
+    row.title = todo(1)
 	row.note = todo.note
 
 
