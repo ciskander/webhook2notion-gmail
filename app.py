@@ -13,13 +13,15 @@ def createNotionTask(token, collectionURL, todo):
     client = NotionClient(token)
     cv = client.get_collection_view(collectionURL)
     row = cv.collection.add_row()
-    row.title = todo(1)
+    row.title = todo.title
 	row.note = todo.note
 
 
 @app.route('/create_todo', methods=['GET'])
 def create_todo():
-    todo = request.args.get('title', 'note')
+    def todo():
+		title = request.args.get('title', default = '', type = str)
+		note = request.args.get('note', default = '', type = str)
     token_v2 = os.environ.get("TOKEN")
     url = os.environ.get("URL")
     createNotionTask(token_v2, url, todo)
